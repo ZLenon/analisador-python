@@ -2,33 +2,36 @@ from pro_filer.actions.main_actions import show_details
 
 # from datetime import date
 # ==============MOCK===============================
-contexto_sucesso = {
-    "base_path": "images/pro-filer-preview.gif",
-}
 contexto_falha = {"base_path": "/src/utils/????"}
 # time = date.today()
 
 
-# ============SUCESSO===============================
-def test_show_details_file(capsys):
-    show_details(contexto_sucesso)
+# ==========SUCESSO=EM=CASO=DE=Arquivo================
+def test_show_details_file(capsys, tmp_path):
+    arquivo = tmp_path / "isValidLogin.ts"
+    arquivo.touch()
+    mock_arquivo = {
+        "base_path": str(arquivo),
+    }
+    show_details(mock_arquivo)
     rota = capsys.readouterr()
     assert (
         rota.out
-        == """File name: pro-filer-preview.gif
-File size in bytes: 270824
+        == """File name: isValidLogin.ts
+File size in bytes: 0
 File type: file
-File extension: .gif
-Last modified date: 2023-08-22
+File extension: .ts
+Last modified date: 2023-08-24
 """
     )
 
 
+# ==========SUCESSO=EM=CASO=DE=DIRETORIO================
 def test_show_details_directory(capsys, tmp_path):
-    directory = tmp_path / "database"
-    directory.mkdir()
+    diretorio = tmp_path / "database"
+    diretorio.mkdir()
     mock_dicty = {
-        "base_path": str(directory),
+        "base_path": str(diretorio),
     }
     show_details(mock_dicty)
     rota = capsys.readouterr()
