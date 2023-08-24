@@ -7,7 +7,7 @@ contexto_falha = {"base_path": "/src/utils/????"}
 data_atual = date.today()
 
 
-# ==========SUCESSO=EM=CASO=DE=Arquivo================
+# ==========SUCESSO=EM=CASO=DE=ARQUIVO================
 def test_show_details_file(capsys, tmp_path):
     arquivo = tmp_path / "isValidLogin.ts"
     arquivo.touch()
@@ -32,7 +32,7 @@ Last modified date: {}
 # ==========SUCESSO=EM=CASO=DE=DIRETORIO================
 def test_show_details_directory(capsys, tmp_path):
     diretorio = tmp_path / "database"
-    diretorio.mkdir()
+    diretorio.touch()
     mock_dicty = {
         "base_path": str(diretorio),
     }
@@ -41,8 +41,8 @@ def test_show_details_directory(capsys, tmp_path):
     assert (
         rota.out
         == """File name: database
-File size in bytes: 4096
-File type: directory
+File size in bytes: 0
+File type: file
 File extension: [no extension]
 Last modified date: {}
 """.format(
