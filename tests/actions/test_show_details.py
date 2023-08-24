@@ -1,9 +1,10 @@
 from pro_filer.actions.main_actions import show_details
 
-# from datetime import date
+from datetime import date
+
 # ==============MOCK===============================
 contexto_falha = {"base_path": "/src/utils/????"}
-# time = date.today()
+data_atual = date.today()
 
 
 # ==========SUCESSO=EM=CASO=DE=Arquivo================
@@ -21,8 +22,10 @@ def test_show_details_file(capsys, tmp_path):
 File size in bytes: 0
 File type: file
 File extension: .ts
-Last modified date: 2023-08-24
-"""
+Last modified date: {}
+""".format(
+            data_atual
+        )
     )
 
 
@@ -41,8 +44,10 @@ def test_show_details_directory(capsys, tmp_path):
 File size in bytes: 4096
 File type: directory
 File extension: [no extension]
-Last modified date: 2023-08-24
-"""
+Last modified date: {}
+""".format(
+            data_atual
+        )
     )
 
 
